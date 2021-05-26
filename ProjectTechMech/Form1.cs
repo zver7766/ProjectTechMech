@@ -88,6 +88,8 @@ namespace ProjectTechMech
 
             textBox3.Text = Upp.ToString();
 
+            //два
+
             double n1 = nF;
             double n2 = n1 / Upp;
             double n3 = n2 / UpGOST;
