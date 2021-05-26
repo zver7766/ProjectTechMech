@@ -37,9 +37,9 @@ namespace ProjectTechMech
 
             double UpGOST = 1.0;
 
-            if (Up > 1)
+            if (Up > 1 && Up < 1.12) 
             { UpGOST = 1.12; }
-            else if (Up > 1.12)
+            else if (Up > 1.12 && Up < 1.25)
             { UpGOST = 1.25; }
             else if (Up > 1.25)
             { UpGOST = 1.4; }
