@@ -17,12 +17,9 @@ namespace ProjectTechMech
             //1.Загальний розрахунок приводу.
             //Вхідні данні (варіант №17):
             //Потужність на виході Pв, кВт
-            //double Pv = double.Parse(textBox_P.Text); // 3.1
-            double Pv = double.Parse(textBox_P.Text.Replace('.', ',')); // Треба зчитати данні з textBox_P і textBox_n
+            double Pv = double.Parse(textBox_P.Text.Replace('.', ',')); // Треба зчитати данні з textBox_P і textBox_n //3.1
             //Частота обертання на виході nв, хв.-1
-            //double nv = double.Parse(textBox_n.Text); // 115
-            double nv = 115;
-
+            double nv = double.Parse(textBox_n.Text.Replace('.', ',')); // Треба зчитати данні з textBox_nv і textBox_n //115
             //1.1	Загальний коефіцієнт корисної дії.
             //Тому маємо: Nзаг
             double nZag = 0.903;
@@ -193,7 +190,7 @@ namespace ProjectTechMech
             richTextBox1.AppendText("T3= " + Math.Truncate(T3) + "(Н * м)\n");
             richTextBox1.AppendText("Робимо перевірку проведених розрахунків: " + T1Strich + " < 5% - що допустимо.\n");
             //
-            
+
         }
     }
 }
