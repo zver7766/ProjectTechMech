@@ -18,7 +18,7 @@ namespace ProjectTechMech
             //Вхідні данні (варіант №17):
             //Потужність на виході Pв, кВт
             //double Pv = double.Parse(textBox_P.Text); // 3.1
-            double Pv = 3.1; // Треба зчитати данні з textBox_P і textBox_n
+            double Pv = double.Parse(textBox_P.Text.Replace('.', ',')); // Треба зчитати данні з textBox_P і textBox_n
             //Частота обертання на виході nв, хв.-1
             //double nv = double.Parse(textBox_n.Text); // 115
             double nv = 115;
