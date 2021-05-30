@@ -19,6 +19,10 @@ namespace ProjectTechMech
             //Потужність на виході Pв, кВт
             double Pv = double.Parse(textBox_P.Text.Replace('.', ',')); // Треба зчитати данні з textBox_P і textBox_n //3.1
             //Частота обертання на виході nв, хв.-1
+            //double nv = double.Parse(textBox_n.Text); // 115
+            double nv = 115;
+            
+
             double nv = double.Parse(textBox_n.Text.Replace('.', ',')); // Треба зчитати данні з textBox_nv і textBox_n //115
             //1.1	Загальний коефіцієнт корисної дії.
             //Тому маємо: Nзаг
@@ -171,7 +175,7 @@ namespace ProjectTechMech
             richTextBox1.AppendText("Вибираємо двигунпотужністю Ре= 4 кВт; синхронна частота обертання Nе= 1000 хв -1, фактична частота обертання Nф =" + nF + "хв -1,\n\n");
             richTextBox1.SelectionFont = new Font("Times new roman", 18, FontStyle.Bold);
             richTextBox1.AppendText("1.3 Розбивка загального передаточного числа по ступеням.\n");
-            richTextBox1.AppendText("Загальне передаточне число: " + Math.Truncate(Uzag) + "\n");
+            richTextBox1.AppendText("Загальне передаточне число: " + Math.Round(Uzag,2) + "\n");
             richTextBox1.AppendText("Приймаємо UpGOST = " + UpGOST + "\n");
             richTextBox1.AppendText("Тоді Uпп= " + Math.Truncate(Upp) + ".\n\n");
             richTextBox1.SelectionFont = new Font("Times new roman", 18, FontStyle.Bold);
