@@ -20,7 +20,7 @@ namespace ProjectTechMech
             double Pv = double.Parse(textBox_P.Text.Replace('.', ',')); // Треба зчитати данні з textBox_P і textBox_n //3.1
             //Частота обертання на виході nв, хв.-1
             //double nv = double.Parse(textBox_n.Text); // 115
-            double nv = 115;
+
             
 
             double nv = double.Parse(textBox_n.Text.Replace('.', ',')); // Треба зчитати данні з textBox_nv і textBox_n //115
