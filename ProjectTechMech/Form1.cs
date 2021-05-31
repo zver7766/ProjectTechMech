@@ -9,7 +9,6 @@ namespace ProjectTechMech
         public Form1()
         {
             InitializeComponent();
-            //richTextBox1.AppendText("//Вхідні данні (варіант №17):\n");
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -17,13 +16,9 @@ namespace ProjectTechMech
             //1.Загальний розрахунок приводу.
             //Вхідні данні (варіант №17):
             //Потужність на виході Pв, кВт
-            double Pv = double.Parse(textBox_P.Text.Replace('.', ',')); // Треба зчитати данні з textBox_P і textBox_n //3.1
+            double Pv = double.Parse(textBox_P.Text.Replace('.', ',')); //3.1
             //Частота обертання на виході nв, хв.-1
-            //double nv = double.Parse(textBox_n.Text); // 115
-
-            
-
-            double nv = double.Parse(textBox_n.Text.Replace('.', ',')); // Треба зчитати данні з textBox_nv і textBox_n //115
+            double nv = double.Parse(textBox_n.Text.Replace('.', ',')); //115
             //1.1	Загальний коефіцієнт корисної дії.
             //Тому маємо: Nзаг
             double nZag = 0.903;
@@ -142,59 +137,66 @@ namespace ProjectTechMech
             double T2 = (Ppotr * 0.95 * 0.99 * 1000) / w2;
             double T3 = (Pv * 1000) / w3;
             //Робимо перевірку проведених розрахунків:
-            double T1Strich = T3 / (nZag * Uzag) * 100;
-            if (T1Strich < 5)
+            double T1Strich = T3 / (nZag * Uzag);
+            double EpsilonT1Strich = (T1 - T1Strich) / T1Strich * 100;
+            if (EpsilonT1Strich < 5)
             {
-                T1Strich = T3 / (nZag * Uzag) * 100;
+                EpsilonT1Strich = (T1 - T1Strich) / T1Strich * 100;
             }
             else
             {
-                T1Strich = 1;
+                EpsilonT1Strich = 1;
             }
 
             //Вивід данних 
-            //Если вы хотите, чтобы весь текстовый блок был центрирован, вы должны:    
-            richTextBox1.SelectionAlignment = HorizontalAlignment.Center; /*could be left, right or center*/ //Треба лише заголовки, а не все     
-            richTextBox1.SelectionFont = new Font("Times new roman", 18, FontStyle.Bold);
+            richTextBox1.SelectionAlignment = HorizontalAlignment.Center; 
+            richTextBox1.SelectionFont = new Font("Times new roman", 20, FontStyle.Bold);
             richTextBox1.AppendText("1. Загальний розрахунок приводу.\n");
+            richTextBox1.SelectionAlignment = HorizontalAlignment.Left;
             richTextBox1.SelectionFont = new Font("Times new roman", 16, FontStyle.Regular);
             richTextBox1.AppendText("Вхідні данні (варіант №17):\n");
-            richTextBox1.AppendText("Потужність на виході Pв, кВт:                    " + Pv + "\n");
-            richTextBox1.AppendText("Частота обертання на виході nв, (хв.-1):   " + nv + "\n\n");
+            richTextBox1.AppendText("Потужність на виході Pв, кВт:                    " + Math.Round(Pv, 2) + "\n");
+            richTextBox1.AppendText("Частота обертання на виході nв, (хв.-1):   " + Math.Round(nv, 2) + "\n\n");
+            richTextBox1.SelectionAlignment = HorizontalAlignment.Center;
             richTextBox1.SelectionFont = new Font("Times new roman", 18, FontStyle.Bold);
             richTextBox1.AppendText("1.1 Загальний коефіцієнт корисної дії.\n");
+            richTextBox1.SelectionAlignment = HorizontalAlignment.Left;
             richTextBox1.AppendText("Загальний коефіцієнт корисної дії знаходиться за формулою:\n");
             richTextBox1.AppendText("Nзаг = Nпп * Nц * (Nпід)^2\n");
             richTextBox1.AppendText("де Nпп - коефіцієнт корисної дії (ККД) плоскопасової передачі, Nпп = 0.95\n");
             richTextBox1.AppendText("Nц - ККД циліндричної передачі, Nц = 0.97;.\n");
             richTextBox1.AppendText("Nпід - ККД підшипників, Nпід = 0.99.\n");
-            richTextBox1.AppendText("Тому маємо: Nзаг= " + nZag + "\n\n");
+            richTextBox1.AppendText("Тому маємо: Nзаг= " + Math.Round(nZag, 3) + "\n\n");
+            richTextBox1.SelectionAlignment = HorizontalAlignment.Center;
             richTextBox1.SelectionFont = new Font("Times new roman", 18, FontStyle.Bold);
             richTextBox1.AppendText("1.2 Визначення потрібної потужності та вибір електродвигуна.\n");
-            richTextBox1.AppendText("Потрібна потужність: Pпотр= " + Math.Truncate(Ppotr) + " кВт\n"); // Треба округлити до двух цифр після коми
-            richTextBox1.AppendText("Вибираємо двигунпотужністю Ре= 4 кВт; синхронна частота обертання Nе= 1000 хв -1, фактична частота обертання Nф =" + nF + "хв -1,\n\n");
+            richTextBox1.SelectionAlignment = HorizontalAlignment.Left;
+            richTextBox1.AppendText("Потрібна потужність: Pпотр= " + Math.Round(Ppotr, 2) + " кВт\n"); 
+            richTextBox1.AppendText("Вибираємо двигун потужністю Ре= 4 кВт; синхронна частота обертання Nе= 1000 (хв -1), фактична частота обертання Nф =" + nF + " (хв -1),\n\n");
             richTextBox1.SelectionFont = new Font("Times new roman", 18, FontStyle.Bold);
+            richTextBox1.SelectionAlignment = HorizontalAlignment.Center;
             richTextBox1.AppendText("1.3 Розбивка загального передаточного числа по ступеням.\n");
+            richTextBox1.SelectionAlignment = HorizontalAlignment.Left;
             richTextBox1.AppendText("Загальне передаточне число: " + Math.Round(Uzag,2) + "\n");
-            richTextBox1.AppendText("Приймаємо UpGOST = " + UpGOST + "\n");
-            richTextBox1.AppendText("Тоді Uпп= " + Math.Truncate(Upp) + ".\n\n");
+            richTextBox1.AppendText("Приймаємо UpGOST = " + Math.Round(UpGOST, 2) + "\n");
+            richTextBox1.AppendText("Тоді Uпп= " + Math.Round(Upp, 3) + ".\n\n");
+            richTextBox1.SelectionAlignment = HorizontalAlignment.Center;
             richTextBox1.SelectionFont = new Font("Times new roman", 18, FontStyle.Bold);
             richTextBox1.AppendText("1.4 Визначення обертових моментів на валах редуктора.\n");
-            richTextBox1.AppendText("Частота обертання на валу двигуна: " + nF + "\n");
-            richTextBox1.AppendText("Частота обертання вхідного  кінця вала редуктора: " + n2 + "\n");
-            richTextBox1.AppendText("Частота обертання вихідного кінця вала редуктора: " + n3 + "\n");
-            richTextBox1.AppendText("Рахуємо похибки розрахунків: " + Math.Truncate(Epsilon) + "< 5% - що допустимо.\n");
+            richTextBox1.SelectionAlignment = HorizontalAlignment.Left;
+            richTextBox1.AppendText("Частота обертання на валу двигуна: " + Math.Round(nF, 2) + "( хв-1)\n");
+            richTextBox1.AppendText("Частота обертання вхідного  кінця вала редуктора: " + Math.Round(n2, 3) + "( хв-1)\n");
+            richTextBox1.AppendText("Частота обертання вихідного кінця вала редуктора: " + Math.Round(n3, 3) + "( хв-1)\n");
+            richTextBox1.AppendText("Рахуємо похибки розрахунків: " + Math.Round(Epsilon, 3) + "% < 5% - що допустимо.\n");
             richTextBox1.AppendText("Відповідно циклічні частоти дорівнюють:\n");
-            richTextBox1.AppendText("w1= " + Math.Truncate(w1) + "(с-1)\n");
-            richTextBox1.AppendText("w2= " + Math.Truncate(w2) + "(с-1)\n");
-            richTextBox1.AppendText("w3= " + Math.Truncate(w3) + "(с-1)\n");
+            richTextBox1.AppendText("w1= " + Math.Round(w1, 2) + " (с-1)\n");
+            richTextBox1.AppendText("w2= " + Math.Round(w2, 2) + " (с-1)\n");
+            richTextBox1.AppendText("w3= " + Math.Round(w3, 2) + " (с-1)\n");
             richTextBox1.AppendText("Отже обертальні моменти:\n");
-            richTextBox1.AppendText("T1= " + Math.Truncate(T1) + "(Н * м)\n");
-            richTextBox1.AppendText("T2= " + Math.Truncate(T2) + "(Н * м)\n");
-            richTextBox1.AppendText("T3= " + Math.Truncate(T3) + "(Н * м)\n");
-            richTextBox1.AppendText("Робимо перевірку проведених розрахунків: " + T1Strich + " < 5% - що допустимо.\n");
-            //
-
+            richTextBox1.AppendText("T1= " + Math.Round(T1, 2) + " (Н * м)\n");
+            richTextBox1.AppendText("T2= " + Math.Round(T2, 2) + " (Н * м)\n");
+            richTextBox1.AppendText("T3= " + Math.Round(T3, 2) + " (Н * м)\n");
+            richTextBox1.AppendText("Робимо перевірку проведених розрахунків: " + Math.Round(EpsilonT1Strich, 3) + "% < 5% - що допустимо.\n");     
         }
     }
 }
